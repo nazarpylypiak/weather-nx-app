@@ -1,7 +1,7 @@
 <div class="relative inline-block">
   <!-- Units Button -->
   <button
-    class="flex items-center gap-2 px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors hover:bg-slate-600"
+    class="flex items-center gap-2 px-4 py-2.5 bg-brand border border-slate-600 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors hover:bg-brand-light"
     (click)="toggleDropdown()"
   >
     <img src="assets/images/icon-units.svg" alt="Units icon" />
@@ -17,19 +17,21 @@
   <!-- Dropdown Menu -->
   @if (isOpen) {
     <div
-      class="absolute top-full right-0 mt-2 bg-slate-700 border border-slate-600 rounded-xl min-w-72 shadow-xl z-50 overflow-hidden"
+      class="absolute top-full right-0 mt-2 bg-brand p-2 rounded-xl border border-brand-light min-w-72 shadow-xl z-50 overflow-hidden"
     >
-      <div
-        class="px-4 py-4 text-white text-base font-medium border-b border-slate-600"
+      <button
+        type="button"
+        class="w-full flex px-4 py-4 text-white text-base font-medium hover:bg-brand-light cursor-pointer rounded-lg"
       >
         Switch to Imperial
-      </div>
+      </button>
 
       <!-- Unit Categories -->
       @for (category of units; track category.name) {
         <div>
           <div
-            class="px-4 py-3 text-slate-400 text-xs font-semibold uppercase tracking-wide bg-slate-800"
+            [ngClass]="{ 'border-t': !$first }"
+            class="border-t border-t-brand-light px-4 py-3 text-slate-400 text-xs font-semibold tracking-wide bg-brand"
           >
             {{ category.name }}
           </div>
@@ -38,22 +40,13 @@
           @for (option of category.options; track option.label) {
             <button
               type="button"
-              class="w-full flex justify-between items-center px-4 py-3 text-white text-sm cursor-pointer transition-colors hover:bg-slate-600 border-b border-slate-600 text-left"
-              [ngClass]="{ 'border-b-0': $last }"
+              class="w-full flex justify-between items-center px-4 py-3 mb-1 text-white text-sm cursor-pointer transition-colors hover:bg-brand-light rounded-lg text-left"
+              [ngClass]="{ 'bg-brand-light': option.selected }"
               (click)="selectUnit(category.name, option.value)"
             >
               <span class="font-normal">{{ option.label }}</span>
               @if (option.selected) {
-                <svg
-                  class="text-blue-400 stroke-2 flex-shrink-0"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+                <img src="assets/images/icon-checkmark.svg" alt="" />
               }
             </button>
           }
