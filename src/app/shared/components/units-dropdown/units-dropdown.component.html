@@ -1,0 +1,70 @@
+<div class="relative inline-block">
+  <!-- Units Button -->
+  <button
+    class="flex items-center gap-2 px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors hover:bg-slate-600"
+    (click)="toggleDropdown()"
+  >
+    <img src="assets/images/icon-units.svg" alt="Units icon" />
+    Units
+    <img
+      [ngClass]="{ 'rotate-180': isOpen }"
+      src="assets/images/icon-dropdown.svg"
+      class="transition-transform duration-300 ease-in-out"
+      alt="Units chevron icon"
+    />
+  </button>
+
+  <!-- Dropdown Menu -->
+  @if (isOpen) {
+    <div
+      class="absolute top-full right-0 mt-2 bg-slate-700 border border-slate-600 rounded-xl min-w-72 shadow-xl z-50 overflow-hidden"
+    >
+      <div
+        class="px-4 py-4 text-white text-base font-medium border-b border-slate-600"
+      >
+        Switch to Imperial
+      </div>
+
+      <!-- Unit Categories -->
+      @for (category of units; track category.name) {
+        <div>
+          <div
+            class="px-4 py-3 text-slate-400 text-xs font-semibold uppercase tracking-wide bg-slate-800"
+          >
+            {{ category.name }}
+          </div>
+
+          <!-- Unit Options -->
+          @for (option of category.options; track option.label) {
+            <button
+              type="button"
+              class="w-full flex justify-between items-center px-4 py-3 text-white text-sm cursor-pointer transition-colors hover:bg-slate-600 border-b border-slate-600 text-left"
+              [ngClass]="{ 'border-b-0': $last }"
+              (click)="selectUnit(category.name, option.value)"
+            >
+              <span class="font-normal">{{ option.label }}</span>
+              @if (option.selected) {
+                <svg
+                  class="text-blue-400 stroke-2 flex-shrink-0"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              }
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Overlay (click to close) -->
+  @if (isOpen) {
+    <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
+    <div class="fixed inset-0 z-40" (click)="closeDropdown()"></div>
+  }
+</div>
