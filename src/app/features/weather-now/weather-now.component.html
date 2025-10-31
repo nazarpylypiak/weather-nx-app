@@ -2,10 +2,19 @@
   <app-error-message (retry)="retry()"></app-error-message>
 } @else {
   @if (weather$ | async; as weather) {
-    <app-header></app-header>
+    <app-header />
 
-    <div class="mt-5">
-      <app-search></app-search>
+    <div
+      class="grid max-mobile:grid-cols-1 grid-cols-[800px_1fr] grid-rows-1 gap-[20px] text-white px-[110px] mt-8 max-mobile:px-[16px]"
+    >
+      <div class="grid grid-rows-3 gap-2">
+        <app-current-weather />
+        <app-feels-like />
+        <app-daily-forecast />
+      </div>
+      <div class="">
+        <app-hourly-forecast />
+      </div>
     </div>
   }
 }

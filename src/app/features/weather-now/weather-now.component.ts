@@ -7,11 +7,22 @@ import { GeolocationService } from '../../shared/services/geolocation.service';
 import { WeatherService } from '../../shared/services/weather.service';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchComponent } from './containers/search/search.component';
+import { CurrentWeatherComponent } from './containers/current-weather/current-weather.component';
+import { DailyForecastComponent } from './containers/daily-forecast/daily-forecast.component';
+import { FeelsLikeComponent } from './containers/feels-like/feels-like.component';
+import { HourlyForecastComponent } from './containers/hourly-forecast/hourly-forecast.component';
 
 @Component({
   selector: 'app-weather-now',
-  imports: [AsyncPipe, HeaderComponent, SearchComponent, ErrorMessageComponent],
+  imports: [
+    AsyncPipe,
+    HeaderComponent,
+    HourlyForecastComponent,
+    ErrorMessageComponent,
+    FeelsLikeComponent,
+    DailyForecastComponent,
+    CurrentWeatherComponent,
+  ],
   templateUrl: './weather-now.component.html',
   styleUrl: './weather-now.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -4,10 +4,6 @@
 :host {
     $shape: 6px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     mat-form-field {
         @include mat.form-field-overrides((
             container-height: 40px,
@@ -25,7 +21,7 @@
         @include mat.button-overrides((
             filled-container-shape: $shape,
             filled-container-color: vars.$color-blue-500,
-            filled-container-height: 34px,
+            // filled-container-height: 34px,
         ));
     }
 }
