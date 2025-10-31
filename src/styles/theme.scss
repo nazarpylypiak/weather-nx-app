@@ -1,4 +1,30 @@
 @theme {
-    --color-brand: #25243f;
-    --color-brand-light: #2f2e4a;
+  /* 🧩 Custom breakpoints */
+  --breakpoint-mobile: 23.4375rem;   /* 375px / 16 */
+  --breakpoint-desktop: 90rem;       /* 1440px / 16 */
+
+  /* 🎨 Brand Colors */
+  --color-brand: hsl(243deg 96% 9%);         /* Neutral 900 */
+  --color-brand-light: hsl(243deg 27% 20%);  /* Neutral 800 */
+
+  /* ⚙️ Neutral palette */
+  --color-neutral-900: hsl(243deg 96% 9%);
+  --color-neutral-800: hsl(243deg 27% 20%);
+  --color-neutral-700: hsl(243deg 23% 24%);
+  --color-neutral-600: hsl(243deg 23% 30%);
+  --color-neutral-300: hsl(240deg 6% 70%);
+  --color-neutral-200: hsl(250deg 6% 84%);
+  --color-neutral-0: hsl(0deg 0% 100%);
+
+  /* 🟠 Orange */
+  --color-orange-500: hsl(28deg 100% 52%);
+
+  /* 🔵 Blue */
+  --color-blue-500: hsl(233deg 67% 56%);
+  --color-blue-700: hsl(248deg 70% 36%);
+
+  /* ✍️ Typography */
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --text-base-size: 18px;
 }

@@ -1,7 +1,7 @@
 <div class="relative inline-block">
   <!-- Units Button -->
   <button
-    class="flex items-center gap-2 px-4 py-2.5 bg-brand border border-slate-600 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors hover:bg-brand-light"
+    class="flex items-center gap-2 px-4 py-2.5 bg-brand-light border border-slate-600 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors hover:bg-brand-light border border-transparent focus:border-white"
     (click)="toggleDropdown()"
   >
     <img src="assets/images/icon-units.svg" alt="Units icon" />
@@ -17,11 +17,11 @@
   <!-- Dropdown Menu -->
   @if (isOpen) {
     <div
-      class="absolute top-full right-0 mt-2 bg-brand p-2 rounded-xl border border-brand-light min-w-72 shadow-xl z-50 overflow-hidden"
+      class="absolute top-full right-0 mt-2 bg-brand-light p-2 rounded-xl border border-brand-light min-w-72 shadow-xl z-50 overflow-hidden"
     >
       <button
         type="button"
-        class="w-full flex px-4 py-4 text-white text-base font-medium hover:bg-brand-light cursor-pointer rounded-lg"
+        class="w-full flex px-4 py-4 text-white text-base font-medium hover:bg-neutral-700 border border-transparent focus:border-white cursor-pointer rounded-lg"
       >
         Switch to Imperial
       </button>
@@ -31,7 +31,7 @@
         <div>
           <div
             [ngClass]="{ 'border-t': !$first }"
-            class="border-t border-t-brand-light px-4 py-3 text-slate-400 text-xs font-semibold tracking-wide bg-brand"
+            class="border-t border-t-brand-light px-4 py-3 text-slate-400 text-xs font-semibold tracking-wide bg-brand-light"
           >
             {{ category.name }}
           </div>
@@ -40,8 +40,8 @@
           @for (option of category.options; track option.label) {
             <button
               type="button"
-              class="w-full flex justify-between items-center px-4 py-3 mb-1 text-white text-sm cursor-pointer transition-colors hover:bg-brand-light rounded-lg text-left"
-              [ngClass]="{ 'bg-brand-light': option.selected }"
+              class="w-full flex justify-between items-center px-4 py-3 mb-1 text-white text-sm cursor-pointer transition-colors hover:bg-neutral-700 rounded-lg text-left"
+              [ngClass]="{ 'bg-neutral-700': option.selected }"
               (click)="selectUnit(category.name, option.value)"
             >
               <span class="font-normal">{{ option.label }}</span>

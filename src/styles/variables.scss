@@ -1,0 +1,44 @@
+/*
+============================================================================
+🎨 BRAND COLORS
+============================================================================
+*/
+$color-brand: hsl(243deg 96% 9%);           /* Primary brand color */
+$color-brand-light: hsl(243deg 27% 20%);    /* Lighter brand variant */
+
+/*
+============================================================================
+⚙️ NEUTRAL PALETTE
+============================================================================
+*/
+$color-neutral-900: hsl(243deg 96% 9%);     /* Darkest neutral */
+$color-neutral-800: hsl(243deg 27% 20%);    /* Dark neutral */
+$color-neutral-700: hsl(243deg 23% 24%);    /* Medium-dark neutral */
+$color-neutral-600: hsl(243deg 23% 30%);    /* Medium neutral */
+$color-neutral-300: hsl(240deg 6% 70%);     /* Light neutral */
+$color-neutral-200: hsl(250deg 6% 84%);     /* Lighter neutral */
+$color-neutral-0: hsl(0deg 0% 100%);        /* White (brightest) */
+
+/*
+============================================================================
+🟠 ACCENT COLORS - ORANGE
+============================================================================
+*/
+$color-orange-500: hsl(28deg 100% 52%);     /* Primary orange accent */
+
+/*
+============================================================================
+🔵 ACCENT COLORS - BLUE
+============================================================================
+*/
+$color-blue-500: hsl(233deg 67% 56%);       /* Primary blue */
+$color-blue-700: hsl(248deg 70% 36%);       /* Darker blue variant */
+
+/*
+============================================================================
+✍️ TYPOGRAPHY
+============================================================================
+*/
+$font-sans: "DM Sans", sans-serif;           /* Body & UI text font */
+$font-display: "Bricolage Grotesque", sans-serif; /* Heading & display font */
+$text-base-size: 18px;                       /* Base font size */

@@ -1,6 +1,13 @@
 @use "tailwindcss";
 @use "./styles/theme";
+@use "./fonts/fonts";
 
 body {
+  @apply font-sans text-base text-neutral-900 bg-neutral-0;
+
   background-color: #02012B;
+}
+
+h1, h2, h3 {
+  font-family: "Bricolage Grotesque", sans-serif;
 }

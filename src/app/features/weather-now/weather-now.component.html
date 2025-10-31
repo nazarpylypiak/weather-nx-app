@@ -1,1 +1,11 @@
-<p>weather-now works!</p>
+@if (error) {
+  <app-error-message (retry)="retry()"></app-error-message>
+} @else {
+  @if (weather$ | async; as weather) {
+    <app-header></app-header>
+
+    <div class="mt-5">
+      <app-search></app-search>
+    </div>
+  }
+}

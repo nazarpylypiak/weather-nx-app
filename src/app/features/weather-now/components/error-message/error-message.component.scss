@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+:host {
+    @include mat.fab-overrides((
+      extended-container-height: 36px,
+      foreground-color: white,
+      container-elevation-shadow: -4px -4px 5px 0 rgba(0, 0, 0, 0.5),
+      ));
+     @include mat.icon-button-overrides((
+        icon-size: 10,
+      )) 
+
+}
