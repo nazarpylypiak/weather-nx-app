@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GeolocationService {
-  getCurrentPosition(): Observable<{ lat: number; lon: number }> {
+  getCurrentPosition(): Observable<{ lat: number; lng: number }> {
     return new Observable((observer) => {
       if (!navigator.geolocation) {
         observer.error('Geolocation not supported');
@@ -14,11 +14,11 @@ export class GeolocationService {
           (position) => {
             observer.next({
               lat: position.coords.latitude,
-              lon: position.coords.longitude,
+              lng: position.coords.longitude,
             });
             observer.complete();
           },
-          (error) => observer.error(error),
+          (error) => observer.error(error)
         );
       }
     });

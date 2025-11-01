@@ -6,4 +6,11 @@ export interface Forecast {
   timezone: string;
   timezone_abbreviation: string;
   utc_offset_seconds: number;
+  hourly?: Hourly;
+}
+
+export interface Hourly {
+  time: string[];
+  weather_code: number[];
+  temperature_2m: number[];
 }

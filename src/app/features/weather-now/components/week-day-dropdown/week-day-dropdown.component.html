@@ -1,0 +1,10 @@
+@for (weekDay of weekDays; track weekDay) {
+  <button
+    (click)="onSelect(weekDay)"
+    [ngClass]="{ 'bg-neutral-700': selected === weekDay }"
+    type="button"
+    class="w-full flex justify-between items-center px-4 py-3 mb-1 text-white text-sm cursor-pointer transition-colors hover:bg-neutral-700 rounded-lg text-left"
+  >
+    <span class="font-normal">{{ weekDay }}</span>
+  </button>
+}

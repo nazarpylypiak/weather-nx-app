@@ -1,1 +1,23 @@
-<p>hourly-forecast works!</p>
+<div class="bg-brand-light rounded-[16px] p-5">
+  <div class="flex justify-between items-center gap-[16px]">
+    <h3 clas="flex-1">Hourly forecast</h3>
+
+    <app-dropdown
+      (selectedChange)="onChange($event)"
+      #dropdown
+      buttonClasses="bg-neutral-700"
+    >
+      <app-week-day-dropdown />
+    </app-dropdown>
+  </div>
+
+  @for (dayHour of dayHours; track dayHour.time) {
+    <div class="flex justify-between bg-neutral-700 gap-2">
+      <div class="flex">
+        <span [appWeatherCode]="dayHour.weather_code"></span>
+        <div>{{ dayHour.time | date: 'hh aa' }}</div>
+      </div>
+      <div>{{ dayHour.temp }}°</div>
+    </div>
+  }
+</div>

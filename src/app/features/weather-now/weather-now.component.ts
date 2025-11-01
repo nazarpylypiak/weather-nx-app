@@ -2,7 +2,14 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BehaviorSubject, catchError, mergeMap, of, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { GeolocationService } from '../../shared/services/geolocation.service';
 import { WeatherService } from '../../shared/services/weather.service';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
@@ -37,7 +44,12 @@ export class WeatherNowComponent {
   weather$ = this.#retry$.pipe(
     switchMap(() =>
       this.geolocation.getCurrentPosition().pipe(
-        mergeMap(({ lat, lon }) => this.weatherService.getWeather(lat, lon)),
+        tap((res) => this.weatherService.setLocation(res)),
+        mergeMap(() =>
+          this.weatherService.getWeather({
+            hourly: ['weather_code', 'temperature_2m'],
+          })
+        ),
         catchError((err) => {
           console.error('Error fetching weather:', err);
           this.error = true;
