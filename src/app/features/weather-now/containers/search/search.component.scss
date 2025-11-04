@@ -1,27 +1,41 @@
 @use '@angular/material' as mat;
 @use '../../../../../styles/variables' as vars;
 
-:host {
-    $shape: 6px;
+mat-form-field {
+    @include mat.form-field-overrides((
+        container-height: 40px,
+        container-vertical-padding: 8px,
+        outlined-outline-color: transparent,
+        outlined-caret-color: white,
+        outlined-input-text-color: white,
+        outlined-input-text-placeholder-color: white,
+        outlined-container-shape: vars.$shape,
+        outlined-focus-outline-color: white,
+    ));
+}
 
-    mat-form-field {
-        @include mat.form-field-overrides((
-            container-height: 40px,
-            container-vertical-padding: 8px,
-            outlined-outline-color: transparent,
-            outlined-caret-color: white,
-            outlined-input-text-color: white,
-            outlined-input-text-placeholder-color: white,
-            outlined-container-shape: $shape,
-            outlined-focus-outline-color: white,
-            ));
+button {
+    @include mat.button-overrides((
+        filled-container-shape: vars.$shape,
+        filled-container-color: vars.$color-blue-500,
+    ));
+}
+
+.search-autocomplete-panel {
+    margin-top: 10px;
+
+    .mat-mdc-autocomplete-panel {
+        border-radius: 0.5rem !important;
+        padding: 5px;
+
+        .mdc-list-item--selected {
+            border-radius: 0.5rem;
+            background-color: vars.$color-neutral-700 !important;
+            border: 1px solid vars.$color-neutral-600;
+        }
     }
 
-    button {
-        @include mat.button-overrides((
-            filled-container-shape: $shape,
-            filled-container-color: vars.$color-blue-500,
-            // filled-container-height: 34px,
-        ));
+    .mdc-list-item__primary-text {
+        color: white !important;
     }
 }

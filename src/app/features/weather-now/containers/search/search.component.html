@@ -1,8 +1,29 @@
 <div class="flex justify-center gap-3 mt-5 flex-wrap max-sm:flex-col">
-  <div class="flex-1 min-w-[250px] sm:max-w-[500px] bg-neutral-800 rounded-lg">
+  <div class="rounded-lg flex-1 min-w-[250px] sm:max-w-[500px] bg-neutral-800">
     <mat-form-field appearance="outline" class="w-full">
       <mat-icon matPrefix class="!text-white">search</mat-icon>
-      <input matInput placeholder="Search for a place..." type="search" />
+      <input
+        [formControl]="searchCtrl"
+        matInput
+        placeholder="Search for a place..."
+        type="search"
+        [matAutocomplete]="auto"
+      />
+
+      <mat-autocomplete
+        [className]="'asnoteasonet'"
+        autoActiveFirstOption
+        (optionSelected)="onSelected($event.option.value)"
+        [hideSingleSelectionIndicator]="true"
+        #auto="matAutocomplete"
+      >
+        @for (option of filteredOptions | async; track option.id) {
+          <mat-option [value]="option"
+            >{{ option.address.city }}, {{ option.admin1 }},
+            {{ option.address.country }}</mat-option
+          >
+        }
+      </mat-autocomplete>
     </mat-form-field>
   </div>
 

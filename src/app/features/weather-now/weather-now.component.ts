@@ -7,21 +7,22 @@ import {
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OpenMeteoReq } from '@shared/models/open-meteo.model';
+import { DataService } from '@shared/services/data.service';
+import { NominatimService } from '@shared/services/nominatim.service';
+import { OpenMeteoService } from '@shared/services/open-meteo.service';
 import { UnitsService } from '@shared/services/units.service';
 import {
   BehaviorSubject,
   catchError,
-  distinctUntilChanged,
   map,
   mergeMap,
   of,
   shareReplay,
-  startWith,
   switchMap,
   tap,
 } from 'rxjs';
 import { GeolocationService } from '../../shared/services/geolocation.service';
-import { WeatherService } from '../../shared/services/weather.service';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CurrentWeatherComponent } from './containers/current-weather/current-weather.component';
@@ -45,49 +46,51 @@ import { HourlyForecastComponent } from './containers/hourly-forecast/hourly-for
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherNowComponent {
-  geolocation = inject(GeolocationService);
-  weatherService = inject(WeatherService);
+  #geolocation = inject(GeolocationService);
+  #openMeteo = inject(OpenMeteoService);
+  #nominatim = inject(NominatimService);
+  #unitsService = inject(UnitsService);
+  #data = inject(DataService);
 
   #retry$ = new BehaviorSubject<void>(undefined);
+  #loading$ = new BehaviorSubject<boolean>(false);
   error: boolean;
 
+  reqParams: Omit<OpenMeteoReq, 'lat' | 'lng'>;
+
+  #currentCity = this.#geolocation
+    .getCurrentPosition()
+    .pipe(
+      mergeMap(({ lat, lng }) => this.#nominatim.getCityAndCountry(lat, lng))
+    );
+
   weather$ = this.#retry$.pipe(
-    switchMap(() =>
-      this.geolocation.getCurrentPosition().pipe(
-        tap((res) => this.weatherService.setLocation(res)),
-        mergeMap(() =>
-          this.weatherService.getWeather({
-            current: [
-              'temperature_2m',
-              'apparent_temperature',
-              'relative_humidity_2m',
-              'wind_speed_10m',
-              'precipitation',
-            ],
-            hourly: ['weather_code', 'temperature_2m'],
-            daily: ['temperature_2m_max', 'temperature_2m_min', 'weather_code'],
-            timezone: 'auto',
-            temperature_unit: this.#unitsService.getUnits().temperature,
-            wind_speed_unit: this.#unitsService.getUnits().windSpeed,
-            precipitation_unit: this.#unitsService.getUnits().precipitation,
-          })
-        ),
-        catchError((err) => {
-          console.error('Error fetching weather:', err);
-          this.error = true;
-          return of(null);
-        })
+    tap(() => this.#loading$.next(true)),
+    switchMap(() => {
+      const selectedCity = this.#data.selectedCity();
+
+      if (selectedCity) return of(selectedCity);
+
+      return this.#currentCity;
+    }),
+    switchMap(({ address, ...rest }) =>
+      this.#openMeteo.getWeather({ ...rest, ...this.reqParams }).pipe(
+        map((res) => ({
+          ...res,
+          location: address,
+        })),
+        tap(() => this.#loading$.next(false))
       )
     ),
+    catchError((error) => {
+      console.error('Error fetching weather:', error);
+      this.error = true;
+      this.#loading$.next(false);
+      return of(null);
+    }),
     shareReplay(1)
   );
-  isLoading$ = this.weather$.pipe(
-    map((weather) => weather === null && !this.error), // or use startWith(true)
-    startWith(true),
-    distinctUntilChanged()
-  );
-
-  #unitsService = inject(UnitsService);
+  isLoading$ = this.#loading$.asObservable();
 
   constructor() {
     const iconRegistry = inject(MatIconRegistry);
@@ -108,12 +111,32 @@ export class WeatherNowComponent {
 
     effect(() => {
       this.#unitsService.getUnits();
+      this.setReqParams();
+      this.#data.selectedCity();
       this.retry();
     });
   }
 
+  setReqParams() {
+    this.reqParams = {
+      current: [
+        'temperature_2m',
+        'apparent_temperature',
+        'relative_humidity_2m',
+        'wind_speed_10m',
+        'precipitation',
+      ],
+      hourly: ['weather_code', 'temperature_2m'],
+      daily: ['temperature_2m_max', 'temperature_2m_min', 'weather_code'],
+      timezone: 'auto',
+      temperature_unit: this.#unitsService.getUnits().temperature,
+      wind_speed_unit: this.#unitsService.getUnits().windSpeed,
+      precipitation_unit: this.#unitsService.getUnits().precipitation,
+    };
+  }
+
   retry() {
     this.error = false;
-    this.#retry$.next();
+    this.#retry$.next(null);
   }
 }

@@ -6,4 +6,10 @@
         panel-background-color: vars.$color-brand-light,
         enabled-trigger-text-color: white,
     ));
+    @include mat.autocomplete-overrides((
+        container-shape: vars.$shape,
+        background-color: vars.$color-neutral-800,
+    ));
 }
+
+
