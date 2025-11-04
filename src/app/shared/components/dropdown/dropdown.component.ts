@@ -2,13 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   HostListener,
   input,
   model,
-  OnInit,
 } from '@angular/core';
-import { DROPDOWN } from '@shared/components/dropdown/dropdown.token';
 import { Subject } from 'rxjs';
 
 export interface Dropdown {
@@ -24,7 +21,9 @@ export interface Dropdown {
   styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent {
+  selected = model<string>('—');
+  list = input<string[]>([]);
   @HostListener('document:keydown.escape')
   onEscape() {
     if (this.isOpen) {
@@ -32,23 +31,14 @@ export class DropdownComponent implements OnInit {
     }
   }
 
-  @ContentChild(DROPDOWN, { static: true })
-  content: Dropdown;
-
   isOpen = false;
 
   buttonClasses = input<string | null>(null);
   iconUrl = input<string | null>(null);
-  selected = model<unknown>(null);
 
-  ngOnInit(): void {
-    this.selected.set(this.content.selected);
-    this.content.valueChanges.subscribe({
-      next: () => {
-        this.selected.set(this.content.selected);
-        this.closeDropdown();
-      },
-    });
+  onSelected(weekDay: string) {
+    this.selected.set(weekDay);
+    this.closeDropdown();
   }
 
   toggleDropdown(): void {

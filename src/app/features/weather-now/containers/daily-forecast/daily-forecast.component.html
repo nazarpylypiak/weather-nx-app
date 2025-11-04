@@ -1,1 +1,17 @@
-<p>daily-forecast works!</p>
+<div class="h-6 mb-4">Daily forecast</div>
+<div class="grid grid-cols-3 xl:grid-cols-7 gap-2">
+  @for (day of items(); track day?.time) {
+    <div
+      class="flex flex-col items-center justify-between bg-neutral-800 rounded-2xl p-3 h-40"
+    >
+      @if (!loading() && day) {
+        <div>{{ day.time | date: 'EE' }}</div>
+        <img class="w-12" [src]="day.wCode | weatherCode" alt="Weather icon" />
+        <div class="flex w-full justify-between text-xs">
+          <span>{{ day.tMax }}</span
+          ><span>{{ day.tMin }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

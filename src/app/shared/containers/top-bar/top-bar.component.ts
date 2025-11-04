@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UnitsDropdownComponent } from '../../components/units-dropdown/units-dropdown.component';
+import { UnitsDropdownComponent } from '@shared/components/units-dropdown/units-dropdown.component';
 
 @Component({
   selector: 'app-top-bar',

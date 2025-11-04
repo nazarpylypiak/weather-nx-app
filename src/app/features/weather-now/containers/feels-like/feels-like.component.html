@@ -1,1 +1,11 @@
-<p>feels-like works!</p>
+<div class="grid grid-cols-4 max-lg:grid-cols-2 gap-4">
+  @for (item of items(); track item.label) {
+    <div
+      class="bg-neutral-800 rounded-2xl p-6 h-32 flex flex-col justify-between"
+    >
+      <div>{{ item.label }}</div>
+
+      <div class="text-3xl">{{ loading() ? '—' : item.value }}</div>
+    </div>
+  }
+</div>

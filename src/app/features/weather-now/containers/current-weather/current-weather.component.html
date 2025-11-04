@@ -1,15 +1,28 @@
-<div
-  class="flex h-[286px] w-full max-w-[800px] bg-[url('/assets/images/bg-today-large.svg')] bg-cover bg-center bg-no-repeat justify-between items-center px-8 rounded-2xl text-white max-mobile:flex-col max-mobile:max-w-[343px] max-mobile:h-auto max-mobile:py-6"
->
-  <!-- Left side: Location and date -->
-  <div class="max-mobile:text-center">
-    <div class="text-2xl font-semibold">Berlin, Germany</div>
-    <div class="text-base font-light text-gray-200">Tuesday, Aug 5, 2025</div>
+@if (loading()) {
+  <div
+    class="flex justify-center items-center rounded-2xl bg-neutral-700 min-h-[286px] max-w-[800px]"
+  >
+    <mat-icon class="mr-2 animate-spin" svgIcon="loading"></mat-icon>
+    Loading...
   </div>
+} @else {
+  <div
+    class="flex min-h-[286px] max-w-[800px] bg-[url('/assets/images/bg-today-large.svg')] bg-cover bg-center bg-no-repeat justify-between items-center px-8 rounded-2xl text-white max-md:flex-col max-md:justify-center"
+  >
+    <!-- Left side: Location and date -->
+    <div class="md:text-center">
+      <div class="text-2xl font-semibold">{{ city() }}, {{ country() }}</div>
+      <div class="text-base font-light text-gray-200">
+        {{ date() | date: 'EEEE, MMM d, y' }}
+      </div>
+    </div>
 
-  <!-- Right side: Icon and temperature -->
-  <div class="flex items-center gap-3 text-6xl max-mobile:mt-4">
-    <span class="w-18"><img src="assets/images/icon-sunny.webp" alt="" /></span>
-    <span class="font-sans italic">68°</span>
+    <!-- Right side: Icon and temperature -->
+    <div class="flex items-center gap-3 text-6xl max-mobile:mt-4">
+      <span class="w-18"
+        ><img src="assets/images/icon-sunny.webp" alt=""
+      /></span>
+      <span class="font-sans italic">{{ temp() | number: '1.0-0' }}°</span>
+    </div>
   </div>
-</div>
+}

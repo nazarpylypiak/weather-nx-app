@@ -1,21 +1,9 @@
-import {
-  Directive,
-  effect,
-  ElementRef,
-  inject,
-  input,
-  Renderer2,
-} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Directive({
-  selector: '[appWeatherCode]',
+@Pipe({
+  name: 'weatherCode',
 })
-export class WeatherCodeDirective {
-  appWeatherCode = input<number>();
-
-  #el = inject(ElementRef);
-  #renderer = inject(Renderer2);
-
+export class WeatherCodePipe implements PipeTransform {
   private weatherIcons: Record<number, string> = {
     0: 'icon-sunny.webp', // Clear sky
     1: 'icon-partly-cloudy.webp', // Mainly clear
@@ -47,23 +35,9 @@ export class WeatherCodeDirective {
     99: 'icon-storm.webp', // Thunderstorm with hail
   };
 
-  constructor() {
-    effect(() => {
-      const weatherCode = this.appWeatherCode();
-      if (!weatherCode) return;
-      const iconFile =
-        this.weatherIcons[this.appWeatherCode()] || 'icon-error.svg';
-      const imgUrl = `assets/images/${iconFile}`;
-
-      // Clear previous content
-      this.#renderer.setProperty(this.#el.nativeElement, 'innerHTML', '');
-      const img = this.#renderer.createElement('img');
-      this.#renderer.setAttribute(img, 'src', imgUrl);
-      this.#renderer.setAttribute(img, 'alt', 'weather icon');
-      this.#renderer.setStyle(img, 'width', '24px'); // optional size
-      this.#renderer.setStyle(img, 'height', '24px');
-
-      this.#renderer.appendChild(this.#el.nativeElement, img);
-    });
+  transform(weatherCode: number): unknown {
+    if (typeof weatherCode !== 'number' || weatherCode < 0) return;
+    const iconFile = this.weatherIcons[weatherCode] || 'icon-error.svg';
+    return `assets/images/${iconFile}`;
   }
 }

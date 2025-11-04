@@ -1,12 +1,22 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+} from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { UnitsService } from '@shared/services/units.service';
 import {
   BehaviorSubject,
   catchError,
+  distinctUntilChanged,
+  map,
   mergeMap,
   of,
+  shareReplay,
+  startWith,
   switchMap,
   tap,
 } from 'rxjs';
@@ -47,7 +57,19 @@ export class WeatherNowComponent {
         tap((res) => this.weatherService.setLocation(res)),
         mergeMap(() =>
           this.weatherService.getWeather({
+            current: [
+              'temperature_2m',
+              'apparent_temperature',
+              'relative_humidity_2m',
+              'wind_speed_10m',
+              'precipitation',
+            ],
             hourly: ['weather_code', 'temperature_2m'],
+            daily: ['temperature_2m_max', 'temperature_2m_min', 'weather_code'],
+            timezone: 'auto',
+            temperature_unit: this.#unitsService.getUnits().temperature,
+            wind_speed_unit: this.#unitsService.getUnits().windSpeed,
+            precipitation_unit: this.#unitsService.getUnits().precipitation,
           })
         ),
         catchError((err) => {
@@ -56,8 +78,16 @@ export class WeatherNowComponent {
           return of(null);
         })
       )
-    )
+    ),
+    shareReplay(1)
   );
+  isLoading$ = this.weather$.pipe(
+    map((weather) => weather === null && !this.error), // or use startWith(true)
+    startWith(true),
+    distinctUntilChanged()
+  );
+
+  #unitsService = inject(UnitsService);
 
   constructor() {
     const iconRegistry = inject(MatIconRegistry);
@@ -71,6 +101,15 @@ export class WeatherNowComponent {
       'error',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/icon-error.svg')
     );
+    iconRegistry.addSvgIcon(
+      'loading',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/icon-loading.svg')
+    );
+
+    effect(() => {
+      this.#unitsService.getUnits();
+      this.retry();
+    });
   }
 
   retry() {

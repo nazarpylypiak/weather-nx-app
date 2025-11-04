@@ -9,7 +9,8 @@
       "@shared*": ["./src/app/shared*"],
       "@core": ["./src/app/core"],
       "@services": ["./src/app/shared/services"],
-      "@components": ["./src/app/shared/components"]
+      "@components": ["./src/app/shared/components"],
+      "@pipes": ["./src/app/shared/pipes"]
     },
     "isolatedModules": true
   },

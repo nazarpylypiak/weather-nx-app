@@ -1,23 +1,38 @@
-<div class="bg-brand-light rounded-[16px] p-5">
-  <div class="flex justify-between items-center gap-[16px]">
-    <h3 clas="flex-1">Hourly forecast</h3>
+<div class="flex justify-between items-center gap-[16px] mb-3">
+  <h3 clas="flex-1">Hourly forecast</h3>
 
-    <app-dropdown
-      (selectedChange)="onChange($event)"
-      #dropdown
-      buttonClasses="bg-neutral-700"
-    >
-      <app-week-day-dropdown />
-    </app-dropdown>
-  </div>
+  <app-dropdown
+    (selectedChange)="onChange($event)"
+    [list]="weekDayNames"
+    [selected]="selectedWeekDay()"
+    #dropdown
+    buttonClasses="bg-neutral-700"
+  />
+</div>
 
-  @for (dayHour of dayHours; track dayHour.time) {
-    <div class="flex justify-between bg-neutral-700 gap-2">
-      <div class="flex">
-        <span [appWeatherCode]="dayHour.weather_code"></span>
-        <div>{{ dayHour.time | date: 'hh aa' }}</div>
+<div class="h-screen overflow-y-auto gap-4">
+  @if (loading()) {
+    @for (fakeDay of [].constructor(24); track $index) {
+      <div
+        class="flex justify-between h-12 bg-neutral-700 gap-2 p-3 rounded-md border border-neutral-600 mb-3"
+      ></div>
+    }
+  } @else {
+    @for (dayHour of weekDays.get(selectedWeekDay()); track dayHour.time) {
+      <div
+        [ngClass]="{ 'mb-3': !$last }"
+        class="flex items-center justify-between px-3 bg-neutral-700 gap-2 h-12 rounded-md border border-neutral-600"
+      >
+        <div class="flex items-center">
+          <img
+            [src]="dayHour.wCode | weatherCode"
+            class="w-8 mr-2"
+            alt="Weather icon"
+          />
+          <div>{{ dayHour.time | date: 'hh aa' }}</div>
+        </div>
+        <div>{{ dayHour.temp }}°</div>
       </div>
-      <div>{{ dayHour.temp }}°</div>
-    </div>
+    }
   }
 </div>

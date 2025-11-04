@@ -2,11 +2,11 @@
   <!-- Button -->
   <button
     [ngClass]="buttonClasses()"
-    class="flex items-center gap-2 px-4 py-2.5 max-mobile:gap-1 max-mobile:px-2 max-mobile:py-1.5 bg-brand-light border border-slate-600 rounded-lg text-white text-sm max-mobile:text-xs font-medium cursor-pointer transition-colors hover:bg-brand-light border border-transparent focus:border-white"
+    class="flex items-center gap-2 px-4 py-2.5 max-mobile:gap-1 max-mobile:px-2 max-mobile:py-1.5 bg-neutral-700 border border-slate-600 rounded-lg text-white text-sm max-mobile:text-xs font-medium cursor-pointer transition-colors hover:bg-neutral-900-light border border-transparent focus:border-white"
     (click)="toggleDropdown()"
   >
     @if (iconUrl()) {
-      <img src="iconUrl" alt="Units icon" />
+      <img [src]="iconUrl()" alt="Units icon" />
     }
     {{ selected() }}
     <img
@@ -20,9 +20,18 @@
   <!-- Dropdown Menu -->
   @if (isOpen) {
     <div
-      class="absolute top-full right-0 mt-2 bg-brand-light p-2 rounded-xl border border-brand-light min-w-72 shadow-xl z-50 overflow-hidden"
+      class="absolute top-full right-0 mt-2 bg-neutral-800 p-2 rounded-xl border border-neutral-600 min-w-52 shadow-xl z-50 overflow-hidden"
     >
-      <ng-content></ng-content>
+      @for (weekDay of list(); track weekDay) {
+        <button
+          (click)="onSelected(weekDay)"
+          [ngClass]="{ 'bg-neutral-700': selected() === weekDay }"
+          type="button"
+          class="w-full flex justify-between items-center px-4 py-3 mb-1 text-white text-sm cursor-pointer transition-colors hover:bg-neutral-700 rounded-lg text-left"
+        >
+          <span class="font-normal">{{ weekDay }}</span>
+        </button>
+      }
     </div>
   }
 

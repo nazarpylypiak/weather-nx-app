@@ -1,17 +1,17 @@
-<div
-  class="flex justify-center max-mobile:flex-col mt-5 gap-2 max-mobile:px-[16px]"
->
-  <div
-    class="max-mobile:flex-1 bg-brand-light inline-block min-w-[600px] max-mobile:min-w-auto rounded-lg"
-  >
+<div class="flex justify-center gap-3 mt-5 flex-wrap max-sm:flex-col">
+  <div class="flex-1 min-w-[250px] sm:max-w-[500px] bg-neutral-800 rounded-lg">
     <mat-form-field appearance="outline" class="w-full">
       <mat-icon matPrefix class="!text-white">search</mat-icon>
       <input matInput placeholder="Search for a place..." type="search" />
     </mat-form-field>
   </div>
 
-  <div class="max-mobile:flex-1 rounded-lg">
-    <button class="h-12 max-mobile:w-full" matButton="filled" extended>
+  <div class="w-auto max-sm:w-full rounded-lg max-sm:min-w-[250px]">
+    <button
+      class="h-12 w-full rounded-lg text-white bg-neutral-900 hover:bg-neutral-900-light focus-visible:ring-2 focus-visible:ring-brand-light"
+      matButton="filled"
+      extended
+    >
       Search
     </button>
   </div>
