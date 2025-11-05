@@ -2,6 +2,7 @@
 @use "./styles/theme";
 @use "./styles/fonts";
 @use "./styles/mat-overrides";
+@use "./styles/variables" as vars;
 
 body {
   @apply font-sans text-base text-neutral-900 bg-neutral-0;
@@ -12,4 +13,30 @@ body {
 h1, h2, h3 {
   @apply font-display;
 }
+
+/* Scrollbar (dark theme) */
+@layer utilities {
+  .scrollbar-custom {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: vars.$color-neutral-700 transparent;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: rgb(100 116 139); /* slate-500 / slate-600 vibe */
+    border-radius: 0;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(148 163 184); /* slate-400-ish */
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
 
