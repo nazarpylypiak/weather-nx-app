@@ -5,7 +5,7 @@
       class="flex flex-col items-center justify-between bg-neutral-800 rounded-2xl p-3 h-40"
     >
       @if (!loading() && day) {
-        <div>{{ day.time | date: 'EE' }}</div>
+        <div>{{ day.time }}</div>
         <img class="w-12" [src]="day.wCode | weatherCode" alt="Weather icon" />
         <div class="flex w-full justify-between text-xs">
           <span>{{ day.tMax }}</span

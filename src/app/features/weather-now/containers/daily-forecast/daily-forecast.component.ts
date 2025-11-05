@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,14 +9,14 @@ import { Forecast } from '@shared/models/forecast';
 import { WeatherCodePipe } from '@shared/pipes/weather-code.pipe';
 
 interface Day {
-  time: Date;
+  time: string;
   tMax: string;
   tMin: string;
   wCode: number;
 }
 @Component({
   selector: 'app-daily-forecast',
-  imports: [DatePipe, WeatherCodePipe],
+  imports: [WeatherCodePipe],
   templateUrl: './daily-forecast.component.html',
   styleUrl: './daily-forecast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +33,9 @@ export class DailyForecastComponent {
       if (!weather) return Array.from({ length: 7 });
       const { daily, current_units } = weather;
       const items = daily.time.map((t, i) => ({
-        time: new Date(t),
+        time: new Intl.DateTimeFormat(navigator.language, {
+          weekday: 'short',
+        }).format(new Date(t)),
         tMax: `${Math.floor(daily.temperature_2m_max[i])}${current_units.temperature_2m.slice(0, 1)}`,
         tMin: `${Math.floor(daily.temperature_2m_min[i])}${current_units.temperature_2m.slice(0, 1)}`,
         wCode: daily.weather_code[i],

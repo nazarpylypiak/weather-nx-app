@@ -12,7 +12,10 @@ export class OpenMeteoService {
 
   searchByCity(cityName: string) {
     const url = 'https://geocoding-api.open-meteo.com/v1/search';
-    const params = new HttpParams().set('name', cityName).set('count', 4);
+    const params = new HttpParams()
+      .set('name', cityName)
+      .set('count', 4)
+      .set('language', navigator.language);
 
     return this.#http.get<OpenMeteoGeoRes>(url, { params }).pipe(
       map((res) =>
@@ -44,7 +47,10 @@ export class OpenMeteoService {
     precipitation_unit,
   }: OpenMeteoReq) {
     const url = 'https://api.open-meteo.com/v1/forecast';
-    let params = new HttpParams().set('latitude', lat).set('longitude', lng);
+    let params = new HttpParams()
+      .set('latitude', lat)
+      .set('longitude', lng)
+      .set('language', navigator.language);
 
     if (current) {
       const currentArr = Array.isArray(current) ? current : [current];

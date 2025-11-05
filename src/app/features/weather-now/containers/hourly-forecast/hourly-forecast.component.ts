@@ -70,9 +70,10 @@ export class HourlyForecastComponent {
           weekDaySet.add(weekDayStr);
         }
         week.get(weekDayStr).push(weekDay);
-      });
+      }); 
 
       this.weekDays = week;
+
       this.weekDayNames = [...weekDaySet];
       const firstKey = this.weekDays.size
         ? this.weekDays.keys().next().value

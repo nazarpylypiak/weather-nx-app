@@ -5,6 +5,7 @@ import {
   effect,
   inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OpenMeteoReq } from '@shared/models/open-meteo.model';
@@ -15,6 +16,7 @@ import { UnitsService } from '@shared/services/units.service';
 import {
   BehaviorSubject,
   catchError,
+  debounceTime,
   map,
   mergeMap,
   of,
@@ -29,7 +31,6 @@ import { CurrentWeatherComponent } from './containers/current-weather/current-we
 import { DailyForecastComponent } from './containers/daily-forecast/daily-forecast.component';
 import { FeelsLikeComponent } from './containers/feels-like/feels-like.component';
 import { HourlyForecastComponent } from './containers/hourly-forecast/hourly-forecast.component';
-
 @Component({
   selector: 'app-weather-now',
   imports: [
@@ -66,6 +67,7 @@ export class WeatherNowComponent {
 
   weather$ = this.#retry$.pipe(
     tap(() => this.#loading$.next(true)),
+    debounceTime(500),
     switchMap(() => {
       const selectedCity = this.#data.selectedCity();
 
@@ -82,6 +84,7 @@ export class WeatherNowComponent {
         tap(() => this.#loading$.next(false))
       )
     ),
+    takeUntilDestroyed(),
     catchError((error) => {
       console.error('Error fetching weather:', error);
       this.error = true;

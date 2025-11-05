@@ -1,7 +1,7 @@
 /* ---------------- DM Sans Variable Font ---------------- */
 @font-face {
   font-family: "DM Sans";
-  src: url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('../assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
   font-weight: 100 900; 
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "DM Sans";
-  src: url('/assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('../assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
@@ -18,7 +18,7 @@
 /* Optional static fallbacks */
 @font-face {
   font-family: "DM Sans";
-  src: url('/assets/fonts/DM_Sans/static/DMSans-Light.ttf') format('truetype');
+  src: url('../assets/fonts/DM_Sans/static/DMSans-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "DM Sans";
-  src: url('/assets/fonts/DM_Sans/static/DMSans-SemiBoldItalic.ttf') format('truetype');
+  src: url('../assets/fonts/DM_Sans/static/DMSans-SemiBoldItalic.ttf') format('truetype');
   font-weight: 600;
   font-style: italic;
   font-display: swap;
@@ -35,7 +35,7 @@
 /* ---------------- Bricolage Grotesque Variable Font ---------------- */
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url('/assets/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+  src: url('../assets/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -44,7 +44,7 @@
 /* Optional static fallback */
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url('/assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf') format('truetype');
+  src: url('../assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

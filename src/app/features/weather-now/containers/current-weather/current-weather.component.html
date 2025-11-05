@@ -7,13 +7,13 @@
   </div>
 } @else {
   <div
-    class="flex min-h-[286px] max-w-[800px] bg-[url('/assets/images/bg-today-large.svg')] bg-cover bg-center bg-no-repeat justify-between items-center px-8 rounded-2xl text-white max-md:flex-col max-md:justify-center"
+    class="bg-big flex min-h-[286px] max-w-[800px] bg-cover bg-center bg-no-repeat justify-between items-center px-8 rounded-2xl text-white max-md:flex-col max-md:justify-center"
   >
     <!-- Left side: Location and date -->
     <div class="md:text-center">
       <div class="text-2xl font-semibold">{{ city() }}, {{ country() }}</div>
       <div class="text-base font-light text-gray-200">
-        {{ date() | date: 'EEEE, MMM d, y' }}
+        {{ date() }}
       </div>
     </div>
 

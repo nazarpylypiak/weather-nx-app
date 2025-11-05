@@ -48,7 +48,7 @@
               (click)="selectUnit(category.type, option.value)"
             >
               <span class="font-normal">{{ option.label }}</span>
-              @if (selectedUnits()[category.type]) {
+              @if (selectedUnits()[category.type] === option.value) {
                 <img src="assets/images/icon-checkmark.svg" alt="" />
               }
             </button>
