@@ -1,82 +1,124 @@
-# WeatherNxApp
+# Weather App - Angular + Nx
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Welcome! 👋 This is my solution to the **Frontend Mentor Weather App Challenge**.
+The app allows users to search for weather information and view current, hourly, and 7-day forecasts using the Open-Meteo API.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+**Live demo:** [https://nazarpylypiak.github.io/weather-nx-app/#/weather-now](https://nazarpylypiak.github.io/weather-nx-app/#/weather-now)
+**Repository:** [GitHub Repo](https://github.com/nazarpylypiak/weather-nx-app)
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+---
 
-## Finish your CI setup
+## Table of Contents
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/HvRmMSNRdH)
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies](#technologies)
+- [API](#api)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Screenshots](#screenshots)
+- [Author](#author)
 
+---
 
-## Run tasks
+## Overview
 
-To run the dev server for your app, use:
+This project is a **Weather App** built using **Angular + Nx**. It was developed as part of the Frontend Mentor coding challenge to practice building realistic projects with HTML, CSS, and JavaScript frameworks.
 
-```sh
-npx nx serve weather-nx-app
+The app is fully responsive and works on both **mobile and desktop** screens. Users can easily switch between Metric and Imperial units and explore hourly and weekly forecasts.
+
+---
+
+## Features
+
+- Search for weather by location
+- View current weather (temperature, icon, location)
+- See additional metrics: feels like, humidity, wind speed, precipitation
+- Browse 7-day forecast with daily highs and lows
+- View hourly forecast with day selector
+- Toggle between Metric and Imperial units
+- Fully responsive layout
+- Hover and focus states for interactive elements
+
+---
+
+## Technologies
+
+- **Angular 20**
+- **Nx Workspace**
+- **TypeScript**
+- **SCSS / Tailwind CSS**
+- **Open-Meteo API** for weather data
+- **GitHub Pages** for deployment
+
+---
+
+## API
+
+The app uses [Open-Meteo API](https://open-meteo.com/en/docs) for fetching weather data. No API key is required.
+Example request for current weather:
+
+```
+https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true
 ```
 
-To create a production bundle:
+---
 
-```sh
-npx nx build weather-nx-app
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 20
+- Angular CLI
+- Nx CLI
+
+### Installation
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/nazarpylypiak/weather-nx-app.git
+cd weather-nx-app
 ```
 
-To see all available targets to run for a project, run:
+2. Install dependencies:
 
-```sh
-npx nx show project weather-nx-app
+```bash
+npm install
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+3. Run the app locally:
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
+```bash
+nx serve weather-app
 ```
 
-To generate a new library, use:
+4. Open your browser and go to `http://localhost:4200`
 
-```sh
-npx nx g @nx/angular:lib mylib
+---
+
+## Deployment
+
+The app is deployed on **GitHub Pages**:
+
+```bash
+nx run weather-app:deploy
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+**Live version:** [https://nazarpylypiak.github.io/weather-nx-app/#/weather-now](https://nazarpylypiak.github.io/weather-nx-app/#/weather-now)
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
+## Screenshots
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+_(You can add screenshots here using Markdown)_
 
-## Install Nx Console
+---
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## Author
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**Nazar Pylypiak**
 
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- GitHub: [https://github.com/nazarpylypiak](https://github.com/nazarpylypiak)
+- Frontend Mentor: [https://www.frontendmentor.io/profile/nazarpylypiak](https://www.frontendmentor.io/profile/nazarpylypiak)
+- LinkedIn: [https://www.linkedin.com/in/nazarpylypiak](https://www.linkedin.com/in/nazarpylypiak)
