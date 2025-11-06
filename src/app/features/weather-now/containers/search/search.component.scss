@@ -6,6 +6,7 @@ mat-form-field {
         container-height: 52px,
         container-vertical-padding: 13px,
         container-text-size: 1.25rem,
+        container-text-font: "DM Sans",
         outlined-outline-color: transparent,
         outlined-caret-color: white,
         outlined-input-text-color: white,
@@ -40,6 +41,7 @@ button {
     }
 
     .mdc-list-item__primary-text {
-        color: white !important;
+        font-family: "DM Sans", sans-serif;
+        color: white;
     }
 }
