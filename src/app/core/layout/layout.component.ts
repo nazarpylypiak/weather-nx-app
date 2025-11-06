@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TopBarComponent } from '../../shared/containers/top-bar/top-bar.component';
+import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 
 @Component({
   selector: 'app-layout',
