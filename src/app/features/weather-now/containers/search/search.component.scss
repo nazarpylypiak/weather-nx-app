@@ -3,8 +3,9 @@
 
 mat-form-field {
     @include mat.form-field-overrides((
-        container-height: 40px,
-        container-vertical-padding: 8px,
+        container-height: 52px,
+        container-vertical-padding: 13px,
+        container-text-size: 1.25rem,
         outlined-outline-color: transparent,
         outlined-caret-color: white,
         outlined-input-text-color: white,
@@ -18,6 +19,9 @@ button {
     @include mat.button-overrides((
         filled-container-shape: vars.$shape,
         filled-container-color: vars.$color-blue-500,
+        filled-container-height: 52px,
+        filled-horizontal-padding: 40px,
+        filled-label-text-size: 1.25rem
     ));
 }
 

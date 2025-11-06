@@ -3,8 +3,9 @@
     <app-error-message (retry)="retry()"></app-error-message>
   } @else {
     <app-header />
+    <h1 class="sr-only">Weather App — current weather and forecast</h1>
 
-    <div class="flex flex-col h-full text-white">
+    <div class="flex flex-col h-full text-white mt-4">
       <div
         class="grid lg:grid-cols-[2fr_1fr] xl:grid-cols-[800px_1fr] gap-5 mt-8"
       >
@@ -18,13 +19,15 @@
             [weather]="weather$ | async"
             [loading]="isLoading$ | async"
           />
-          <app-daily-forecast
-            [weather]="weather$ | async"
-            [loading]="isLoading$ | async"
-          />
+          <div class="mt-6">
+            <app-daily-forecast
+              [weather]="weather$ | async"
+              [loading]="isLoading$ | async"
+            />
+          </div>
         </div>
 
-        <div class="h-[662px] bg-neutral-800 rounded-lg py-4 pl-4">
+        <div class="h-[702px] bg-neutral-800 rounded-lg py-4 pl-4">
           <app-hourly-forecast
             [weather]="weather$ | async"
             [loading]="isLoading$ | async"
@@ -34,3 +37,5 @@
     </div>
   }
 </div>
+
+<footer class="sr-only">End of page content</footer>
