@@ -24,7 +24,6 @@ interface UnitCategory {
   selector: 'app-units-dropdown',
   imports: [CommonModule],
   templateUrl: './units-dropdown.component.html',
-  styleUrl: './units-dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnitsDropdownComponent {

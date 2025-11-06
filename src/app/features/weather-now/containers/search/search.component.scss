@@ -25,16 +25,16 @@ button {
     ));
 }
 
-.search-autocomplete-panel {
-    margin-top: 10px;
+.search-autocomplete-panel.cdk-overlay-pane:not(.mat-mdc-autocomplete-panel-above) {
+    margin-top: 1rem;
 
-    .mat-mdc-autocomplete-panel {
-        border-radius: 0.5rem !important;
+    div.mat-mdc-autocomplete-panel {
+        border-radius: 0.5rem;
         padding: 5px;
 
         .mdc-list-item--selected {
             border-radius: 0.5rem;
-            background-color: vars.$color-neutral-700 !important;
+            background-color: vars.$color-neutral-700;
             border: 1px solid vars.$color-neutral-600;
         }
     }

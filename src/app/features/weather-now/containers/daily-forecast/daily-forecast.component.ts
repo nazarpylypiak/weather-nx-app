@@ -18,7 +18,6 @@ interface Day {
   selector: 'app-daily-forecast',
   imports: [WeatherCodePipe],
   templateUrl: './daily-forecast.component.html',
-  styleUrl: './daily-forecast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DailyForecastComponent {

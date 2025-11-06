@@ -5,7 +5,6 @@ import { SearchComponent } from '../../containers/search/search.component';
   selector: 'app-header',
   imports: [SearchComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {}

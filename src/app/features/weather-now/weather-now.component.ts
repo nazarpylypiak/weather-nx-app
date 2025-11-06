@@ -43,7 +43,6 @@ import { HourlyForecastComponent } from './containers/hourly-forecast/hourly-for
     CurrentWeatherComponent,
   ],
   templateUrl: './weather-now.component.html',
-  styleUrl: './weather-now.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherNowComponent {

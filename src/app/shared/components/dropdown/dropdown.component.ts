@@ -18,7 +18,6 @@ export interface Dropdown {
   selector: 'app-dropdown',
   imports: [CommonModule],
   templateUrl: './dropdown.component.html',
-  styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent {

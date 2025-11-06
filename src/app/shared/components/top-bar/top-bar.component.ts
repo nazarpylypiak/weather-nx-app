@@ -5,7 +5,6 @@ import { UnitsDropdownComponent } from '@shared/components/units-dropdown/units-
   selector: 'app-top-bar',
   imports: [UnitsDropdownComponent],
   templateUrl: './top-bar.component.html',
-  styleUrl: './top-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopBarComponent {}
