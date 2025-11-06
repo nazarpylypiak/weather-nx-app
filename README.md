@@ -111,7 +111,8 @@ nx run weather-app:deploy
 
 ## Screenshots
 
-_(You can add screenshots here using Markdown)_
+![Desktop Preview](./screenshots/desktop_preview.png)
+![Mobile Preview](./screenshots/mobile_preview.png)
 
 ---
 
